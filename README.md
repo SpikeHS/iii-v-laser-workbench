@@ -3,14 +3,12 @@
 **A lightweight starting point for linking semiconductor-laser research records across analysis tools.**
 
 Status: **early scaffold**. Python 3.11+, standard library only; no installation,
-server or instrument required. Maintained by Sen Hu ([SpikeHS](https://github.com/SpikeHS)).
+server or instrument required. 
 
 This project connects the direction of three tools already used in laboratory
 work: [PL-Analyzer](https://github.com/SpikeHS/PL-Analyzer),
 [laser-beam-qa](https://github.com/SpikeHS/laser-beam-qa) and
 [laser-characterization-tools](https://github.com/SpikeHS/laser-characterization-tools).
-The workbench itself is a new prototype. It is not yet a complete measurement,
-cross-analysis or predictive-modeling system.
 
 [中文说明](README.zh-CN.md) · [Roadmap](ROADMAP.md)
 
