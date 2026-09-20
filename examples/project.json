@@ -6,9 +6,9 @@
     {"id": "SIM-D001", "kind": "device", "parent_id": "SIM-W001"}
   ],
   "measurements": [
-    {"id": "PL-001", "entity_id": "SIM-W001", "modality": "pl", "data_kind": "synthetic", "conditions": {}, "source": "results/pl.json"},
-    {"id": "BEAM-001", "entity_id": "SIM-D001", "modality": "beam", "data_kind": "synthetic", "conditions": {}, "source": "results/beam.json"},
-    {"id": "SPECTRUM-001", "entity_id": "SIM-D001", "modality": "spectrum", "data_kind": "synthetic", "conditions": {"current_mA": 100, "temperature_C": null}, "source": "results/spectrum.json"},
+    {"id": "PL-001", "entity_id": "SIM-W001", "modality": "pl", "data_kind": "synthetic", "conditions": {}, "source": "results/pl_export.json"},
+    {"id": "BEAM-001", "entity_id": "SIM-D001", "modality": "beam", "data_kind": "synthetic", "conditions": {}, "source": "results/beam_export.json"},
+    {"id": "SPECTRUM-001", "entity_id": "SIM-D001", "modality": "spectrum", "data_kind": "synthetic", "conditions": {}, "source": "results/spectrum_export.json"},
     {"id": "LIV-001", "entity_id": "SIM-D001", "modality": "liv", "data_kind": "synthetic", "conditions": {"temperature_C": 25}, "source": "results/liv_export.json"}
   ]
 }
