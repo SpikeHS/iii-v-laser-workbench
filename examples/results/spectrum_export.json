@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.1.0",
+  "method": "spectral-spacing-screen",
+  "units": {
+    "current": "mA",
+    "bias": "V",
+    "wavelength": "nm",
+    "power": "dBm",
+    "spacing": "GHz"
+  },
+  "parameters": {
+    "spacing_min_GHz": 195,
+    "spacing_max_GHz": 205,
+    "screening_drop_dB": 30,
+    "thresholds_dB": [
+      3,
+      6
+    ]
+  },
+  "points": [
+    {
+      "id": "p0",
+      "current": 100,
+      "bias": 1,
+      "filename": "SYNTHETIC_I100mA_V1V.txt",
+      "analyses": {
+        "3": {
+          "threshold_drop_db": 3,
+          "threshold_dBm": -23.014,
+          "stability_drop_db": 30,
+          "stability_threshold_dBm": -50.014,
+          "stability_peaks_above_threshold": 7,
+          "peaks_above_threshold": 3,
+          "spacing_rule_passed": true,
+          "comb_line_count": 3,
+          "center_wavelength_nm": 1300.081,
+          "spacings_GHz": [
+            199.182,
+            199.901
+          ],
+          "stability_spacings_GHz": [
+            199.873,
+            200.594,
+            199.182,
+            199.901,
+            200.615,
+            200.266
+          ],
+          "selected_peaks": [
+            {
+              "wavelength_nm": 1298.956,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1300.078,
+              "power_dBm": -20.014
+            },
+            {
+              "wavelength_nm": 1301.206,
+              "power_dBm": -21.109
+            }
+          ],
+          "stability_selected_peaks": [
+            {
+              "wavelength_nm": 1296.706,
+              "power_dBm": -29.772
+            },
+            {
+              "wavelength_nm": 1297.828,
+              "power_dBm": -24.345
+            },
+            {
+              "wavelength_nm": 1298.956,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1300.078,
+              "power_dBm": -20.014
+            },
+            {
+              "wavelength_nm": 1301.206,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1302.34,
+              "power_dBm": -24.346
+            },
+            {
+              "wavelength_nm": 1303.474,
+              "power_dBm": -29.792
+            }
+          ]
+        },
+        "6": {
+          "threshold_drop_db": 6,
+          "threshold_dBm": -26.014,
+          "stability_drop_db": 30,
+          "stability_threshold_dBm": -50.014,
+          "stability_peaks_above_threshold": 7,
+          "peaks_above_threshold": 5,
+          "spacing_rule_passed": true,
+          "comb_line_count": 5,
+          "center_wavelength_nm": 1300.084,
+          "spacings_GHz": [
+            200.594,
+            199.182,
+            199.901,
+            200.615
+          ],
+          "stability_spacings_GHz": [
+            199.873,
+            200.594,
+            199.182,
+            199.901,
+            200.615,
+            200.266
+          ],
+          "selected_peaks": [
+            {
+              "wavelength_nm": 1297.828,
+              "power_dBm": -24.345
+            },
+            {
+              "wavelength_nm": 1298.956,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1300.078,
+              "power_dBm": -20.014
+            },
+            {
+              "wavelength_nm": 1301.206,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1302.34,
+              "power_dBm": -24.346
+            }
+          ],
+          "stability_selected_peaks": [
+            {
+              "wavelength_nm": 1296.706,
+              "power_dBm": -29.772
+            },
+            {
+              "wavelength_nm": 1297.828,
+              "power_dBm": -24.345
+            },
+            {
+              "wavelength_nm": 1298.956,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1300.078,
+              "power_dBm": -20.014
+            },
+            {
+              "wavelength_nm": 1301.206,
+              "power_dBm": -21.109
+            },
+            {
+              "wavelength_nm": 1302.34,
+              "power_dBm": -24.346
+            },
+            {
+              "wavelength_nm": 1303.474,
+              "power_dBm": -29.792
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

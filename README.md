@@ -22,9 +22,11 @@ python -m unittest discover -s tests -v
 
 Open `runs/demo.html`. Choose a new output path on subsequent runs; reports never
 overwrite existing files. The demo links wafer-level PL and device-level beam,
-spectral and LIV records. **The PL, beam and spectral result files are
-hand-authored synthetic placeholders.** The LIV result is a real export from
-the `laser-liv` CLI run on a synthetic curve.
+spectral and LIV records. **All four result files are synthetic, and all four
+are produced by the real tools**: the PL metrics JSON by PL-Analyzer's
+presentation exporter, the beam summary by the `lbqa-simulated-zscan` CLI, the
+spectral export by the viewer's own analysis functions, and the LIV export by
+the `laser-liv` CLI.
 
 ## What works now
 
@@ -36,8 +38,19 @@ the `laser-liv` CLI run on a synthetic curve.
 - A version-aware **LIV adapter**: parses `laser-characterization-tools`
   `analysis.json` (schema 0.1.0, CW only), keeping the linear-extrapolation
   method label, fit range, threshold, slope, max power, raw-input provenance
-  and warnings. Manifest conditions supplement missing values (e.g.
-  temperature); recorded source values win and conflicts are errors.
+  and warnings.
+- A **PL adapter**: parses `PL-Analyzer` `*_PL_metrics.json` (schema 1),
+  keeping the Presentation-FWHM semantics declaration separate from Raw Peak
+  or model-fit widths, plus excitation/temperature conditions.
+- A **beam adapter**: parses `laser-beam-qa` `result_summary.json` (no
+  top-level schema version; pinned by detection), keeping full/half angles
+  and waist diameters as separate quantities, scan status, calibration ID and
+  the fit model. Incomplete scans stay visibly incomplete.
+- A **spectrum adapter**: parses the spectral viewer's
+  `spectral-analysis.json` (schema 0.1.0), keeping spacing-rule semantics and
+  per-threshold comb counts; device/temperature must come from the manifest.
+- For all adapters: manifest conditions supplement missing values; recorded
+  source values win and conflicts are errors.
 - Duplicate result files are rejected rather than silently duplicated.
 
 The manifest is edited manually. Conditions are supplied by the user; missing
@@ -51,9 +64,8 @@ Copy the example project to a local folder. Add entities and explicitly assign
 each measurement's `entity_id`. Set `modality` to `pl`, `beam`, `spectrum` or `liv`,
 and accurately set `data_kind`. Put each result JSON under that folder and
 reference it with `source`; record applicable conditions in `conditions`.
-LIV exports are parsed by the built-in adapter; other modalities display the
-source payload as supplied, without interpreting its format. Version-aware
-adapters for the remaining tools are planned.
+All four modalities are parsed by built-in adapters; unknown versions or
+formats are rejected with a clear error instead of being silently misread.
 
 PL-Analyzer publishes its full application source; the other two public projects
 extract reusable functionality with research-specific presets and experimental

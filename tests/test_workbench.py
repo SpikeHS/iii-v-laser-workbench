@@ -4,7 +4,7 @@ import shutil
 import tempfile
 import unittest
 
-from adapters import adapt_liv
+from adapters import adapt_beam, adapt_liv, adapt_pl, adapt_spectrum
 from workbench import load_project, main, render_report
 
 
@@ -71,6 +71,73 @@ class WorkbenchTests(unittest.TestCase):
         payload["measurement_mode"] = "pulsed"
         with self.assertRaisesRegex(ValueError, "CW"):
             adapt_liv(payload)
+
+    def load(self, name):
+        return json.loads((self.root / f"example/results/{name}").read_text(encoding="utf-8"))
+
+    def test_pl_adapter_keeps_presentation_semantics(self):
+        adapted = next(r for r, _, _ in load_project(self.path)[1] if r["id"] == "PL-001")["adapted"]
+        self.assertEqual(adapted["source_tool"], "PL-Analyzer")
+        self.assertEqual(adapted["method"]["name"], "presentation-half-height-fwhm")
+        self.assertIn("not Raw Peak", adapted["method"]["semantics"])
+        self.assertAlmostEqual(adapted["results"]["peak_wavelength_nm"], 1300.0, places=3)
+        self.assertEqual(adapted["conditions"]["excitation_laser"], "532 nm")
+        self.assertEqual(adapted["conditions"]["temperature"], "300 K")
+
+    def test_pl_adapter_rejects_wrong_schema(self):
+        payload = self.load("pl_export.json")
+        payload["schema_version"] = 2
+        with self.assertRaisesRegex(ValueError, "Unsupported PL schema_version"):
+            adapt_pl(payload)
+
+    def test_beam_adapter_keeps_angles_and_status(self):
+        adapted = next(r for r, _, _ in load_project(self.path)[1] if r["id"] == "BEAM-001")["adapted"]
+        self.assertEqual(adapted["source_tool"], "laser-beam-qa")
+        self.assertEqual(adapted["conditions"]["scan_status"], "complete")
+        self.assertEqual(adapted["conditions"]["calibration_id"], "calibration_40x_example")
+        self.assertAlmostEqual(adapted["results"]["full_angle_x_mrad"], 7.996, places=2)
+        self.assertAlmostEqual(adapted["results"]["full_angle_y_mrad"], 10.0, places=2)
+        self.assertIn("full_angle", json.dumps(adapted["results"]))
+        self.assertIn("half_angle", json.dumps(adapted["results"]))
+        self.assertEqual(adapted["judgement"], "PASS")
+
+    def test_beam_adapter_rejects_unknown_model(self):
+        payload = self.load("beam_export.json")
+        payload["divergence_result"]["model"] = "mystery"
+        with self.assertRaisesRegex(ValueError, "Unsupported beam fit model"):
+            adapt_beam(payload)
+
+    def test_beam_adapter_keeps_incomplete_scan_visible(self):
+        payload = self.load("beam_export.json")
+        payload["scan_status"] = "incomplete"
+        payload["measurement_status"] = "incomplete"
+        payload["error_list"] = [{"error_code": "E_SCAN_ABORTED", "message": "scan aborted"}]
+        adapted = adapt_beam(payload)
+        self.assertEqual(adapted["conditions"]["scan_status"], "incomplete")
+        self.assertIn("scan aborted", adapted["warnings"])
+
+    def test_spectrum_adapter_keeps_spacing_rule_semantics(self):
+        adapted = next(r for r, _, _ in load_project(self.path)[1] if r["id"] == "SPECTRUM-001")["adapted"]
+        self.assertEqual(adapted["method"]["name"], "spectral-spacing-screen")
+        self.assertEqual(adapted["method"]["spacing_min_GHz"], 195.0)
+        self.assertEqual(adapted["conditions"]["current_mA"], 100.0)
+        combs = adapted["results"]["comb_counts"]
+        self.assertEqual(combs["100mA_1V_6dB"]["comb_line_count"], 5)
+        self.assertTrue(combs["100mA_1V_6dB"]["spacing_rule_passed"])
+        self.assertEqual(combs["100mA_1V_3dB"]["comb_line_count"], 3)
+
+    def test_spectrum_adapter_rejects_wrong_units(self):
+        payload = self.load("spectrum_export.json")
+        payload["units"]["power"] = "mW"
+        with self.assertRaisesRegex(ValueError, "units"):
+            adapt_spectrum(payload)
+
+    def test_spectrum_adapter_warns_on_multiple_condition_points(self):
+        payload = self.load("spectrum_export.json")
+        payload["points"].append(dict(payload["points"][0], id="p1", current=140, bias=2))
+        adapted = adapt_spectrum(payload)
+        self.assertEqual(adapted["results"]["point_count"], 2)
+        self.assertTrue(any("2 condition points" in w for w in adapted["warnings"]))
 
     def test_reject_duplicate_source_file(self):
         self.change(lambda p: p["measurements"].append(

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "metric_semantics": "Display-assisted whole-spectrum metrics. Presentation FWHM is the half height above an estimated baseline after light Gaussian smoothing; it is not Raw Peak half-prominence FWHM or model-fit FWHM.",
+  "sample_name": "SIM-W001-center",
+  "source_file": "synthetic_pl.csv",
+  "source_metadata": {
+    "Laser": "532 nm",
+    "Power": "10 mW",
+    "Temperature": "300 K"
+  },
+  "metrics": {
+    "peak_wavelength_nm": 1300.0,
+    "peak_intensity_au": 1.020499231187756,
+    "peak_energy_ev": 0.9537246033323097,
+    "baseline_level_au": 0.017085256365756564,
+    "half_max_level_au": 0.5187922437767563,
+    "fwhm_left_nm": 1294.6772253219779,
+    "fwhm_right_nm": 1305.3254649997557,
+    "presentation_fwhm_nm": 10.648239677777838,
+    "integrated_intensity_au_nm": 12.521786443700226,
+    "spectral_centroid_nm": 1297.6876607179906,
+    "noise_sigma_au": 0.003321491032768458,
+    "snr_estimate": 302.09745109131165,
+    "secondary_features": [
+      {
+        "wavelength_nm": 1268.5,
+        "intensity_au": 0.1422957212107221,
+        "relative_height": 0.12478445386130609,
+        "prominence_au": 0.12590713587265898,
+        "energy_ev": 0.9774079498084371
+      }
+    ],
+    "smoothing_sigma_points": 1.5,
+    "quality_flags": [],
+    "algorithm_version": 1
+  }
+}

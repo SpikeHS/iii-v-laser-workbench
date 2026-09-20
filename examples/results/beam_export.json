@@ -1,0 +1,363 @@
+{
+  "acceptance_applied": false,
+  "calibration": {
+    "calibration_id": "calibration_40x_example"
+  },
+  "created_at_iso": "2026-09-20T22:33:33.552375+08:00",
+  "divergence_result": {
+    "fit_diagnostics": {
+      "axis_semantics": "fixed_lab_x_y",
+      "confidence_reasons": [
+        "insufficient_rayleigh_coverage_x",
+        "insufficient_rayleigh_coverage_y"
+      ],
+      "confidence_status": "low_confidence",
+      "fit_space": "diameter_um",
+      "initializer": "centered_quadratic_D_squared",
+      "model": "D(z)=sqrt(D0^2+S^2*(z-z0)^2)",
+      "optimizer": "scipy_least_squares_soft_l1",
+      "paraxial_angle_identity": "1_um_per_mm_equals_1_mrad",
+      "points": [
+        {
+          "fit_included": true,
+          "fit_outlier": false,
+          "index": 0,
+          "normalized_residual_x": 8.576486578147566e-06,
+          "normalized_residual_y": -5.201667821930294e-05,
+          "predicted_x_um": 18.14939674862714,
+          "predicted_y_um": 22.191281851724398,
+          "residual_x_um": 1.5565807096606932e-06,
+          "residual_y_um": -1.154316166918079e-05,
+          "z_actual_mm": -0.3
+        },
+        {
+          "fit_included": true,
+          "fit_outlier": false,
+          "index": 1,
+          "normalized_residual_x": -3.4305946915640094e-05,
+          "normalized_residual_y": 0.0002080660246323853,
+          "predicted_x_um": 18.030125037521472,
+          "predicted_y_um": 22.038669756307737,
+          "residual_x_um": -6.18540300223458e-06,
+          "residual_y_um": 4.5855079452650216e-05,
+          "z_actual_mm": -0.15
+        },
+        {
+          "fit_included": true,
+          "fit_outlier": false,
+          "index": 2,
+          "normalized_residual_x": 5.1458878368714725e-05,
+          "normalized_residual_y": -0.0003121006284410529,
+          "predicted_x_um": 17.99019207916337,
+          "predicted_y_um": 21.987563668943956,
+          "residual_x_um": 9.257555824149222e-06,
+          "residual_y_um": -6.862311021649248e-05,
+          "z_actual_mm": 0.0
+        },
+        {
+          "fit_included": true,
+          "fit_outlier": false,
+          "index": 3,
+          "normalized_residual_x": -3.43059500683325e-05,
+          "normalized_residual_y": 0.00020806603573929265,
+          "predicted_x_um": 18.03012503752204,
+          "predicted_y_um": 22.03866975630529,
+          "residual_x_um": -6.185403570668768e-06,
+          "residual_y_um": 4.585508190046994e-05,
+          "z_actual_mm": 0.14999999999999997
+        },
+        {
+          "fit_included": true,
+          "fit_outlier": false,
+          "index": 4,
+          "normalized_residual_x": 8.57648035335195e-06,
+          "normalized_residual_y": -5.201665631829302e-05,
+          "predicted_x_um": 18.14939674862827,
+          "predicted_y_um": 22.191281851719538,
+          "residual_x_um": 1.5565795798977433e-06,
+          "residual_y_um": -1.1543156809068478e-05,
+          "z_actual_mm": 0.3
+        }
+      ],
+      "x": {
+        "axis": "x",
+        "far_field_left_points_count": 0,
+        "far_field_right_points_count": 0,
+        "fit_r2": 0.9999999924598376,
+        "fit_rmse_um": 5.780426471525714e-06,
+        "full_angle_mrad": 7.995548271038353,
+        "geometric_full_angle_deg": 0.458108730305871,
+        "geometric_full_angle_mrad": 7.995505675968179,
+        "half_angle_mrad": 3.9977741355191765,
+        "max_normalized_residual": 5.1344951744793926e-05,
+        "near_waist_points_count": 5,
+        "normalized_rmse": 3.198934905122214e-07,
+        "parameter_ci95": {
+          "slope_um_per_mm": [
+            7.9950669415814914,
+            7.996029629472838
+          ],
+          "waist_diameter_um": [
+            17.990179577788435,
+            17.990204580546994
+          ],
+          "waist_z_mm": [
+            -1.0707416986131624e-05,
+            1.070741591835686e-05
+          ]
+        },
+        "rayleigh_range_mm": 2.250026073174723,
+        "reduced_chi_square": null,
+        "uncertainty_mode": "relative_scale_1_percent",
+        "waist_bracketed": true,
+        "waist_diameter_um": 17.99019207916337,
+        "waist_z_mm": -5.338873824444854e-13,
+        "z_coverage_in_rayleigh_ranges": 0.13333178827445427
+      },
+      "y": {
+        "axis": "y",
+        "far_field_left_points_count": 0,
+        "far_field_right_points_count": 0,
+        "fit_r2": 0.999999746923173,
+        "fit_rmse_um": 4.2850897666051604e-05,
+        "full_angle_mrad": 10.00001895926012,
+        "geometric_full_angle_deg": 0.5729541068125799,
+        "geometric_full_angle_mrad": 9.999935626702792,
+        "half_angle_mrad": 5.00000947963006,
+        "max_normalized_residual": 0.0003113752698956539,
+        "near_waist_points_count": 5,
+        "normalized_rmse": 1.9398768878232474e-06,
+        "parameter_ci95": {
+          "slope_um_per_mm": [
+            9.996531751055336,
+            10.003507383948918
+          ],
+          "waist_diameter_um": [
+            21.987470989265695,
+            21.98765634901287
+          ],
+          "waist_z_mm": [
+            -6.20401333469158e-05,
+            6.204013694428787e-05
+          ]
+        },
+        "rayleigh_range_mm": 2.198752198222909,
+        "reduced_chi_square": null,
+        "uncertainty_mode": "relative_scale_1_percent",
+        "waist_bracketed": true,
+        "waist_diameter_um": 21.987563668943956,
+        "waist_z_mm": 1.798686040127019e-12,
+        "z_coverage_in_rayleigh_ranges": 0.13644102334236063
+      }
+    },
+    "fit_r2_x": 0.9999999924598376,
+    "fit_r2_y": 0.999999746923173,
+    "full_angle_x_mrad": 7.995548271038353,
+    "full_angle_y_mrad": 10.00001895926012,
+    "half_angle_x_mrad": 3.9977741355191765,
+    "half_angle_y_mrad": 5.00000947963006,
+    "invalid_reason": null,
+    "model": "D(z)=sqrt(D0^2+S^2*(z-z0)^2)",
+    "valid_points_count": 5,
+    "waist_diameter_x_um": 17.99019207916337,
+    "waist_diameter_y_um": 21.987563668943956,
+    "waist_z_x_mm": -5.338873824444854e-13,
+    "waist_z_y_mm": 1.798686040127019e-12,
+    "x_fit_rmse_um": 5.780426471525714e-06,
+    "x_intercept_at_reference_um": null,
+    "x_intercept_um": null,
+    "x_reasons": null,
+    "x_residual_std_um": null,
+    "x_slope_um_per_mm": null,
+    "x_status": null,
+    "x_valid_points_count": null,
+    "x_z_reference_mm": null,
+    "y_fit_rmse_um": 4.2850897666051604e-05,
+    "y_intercept_at_reference_um": null,
+    "y_intercept_um": null,
+    "y_reasons": null,
+    "y_residual_std_um": null,
+    "y_slope_um_per_mm": null,
+    "y_status": null,
+    "y_valid_points_count": null,
+    "y_z_reference_mm": null
+  },
+  "error_list": [],
+  "final_judgement": "PASS",
+  "finalized_at_iso": "2026-09-20T22:33:33.927183+08:00",
+  "fit_r2_x": 0.9999999924598376,
+  "fit_r2_y": 0.999999746923173,
+  "fit_review": {},
+  "fraunhofer_ideal_full_angle_x_mrad": null,
+  "fraunhofer_ideal_full_angle_y_mrad": null,
+  "full_angle_x_mrad": 7.995548271038353,
+  "full_angle_y_mrad": 10.00001895926012,
+  "gaussian_prediction": {
+    "angle_convention": "full_angle_and_half_angle",
+    "fraunhofer_ideal_full_angle_x_deg": null,
+    "fraunhofer_ideal_full_angle_x_mrad": null,
+    "fraunhofer_ideal_full_angle_y_deg": null,
+    "fraunhofer_ideal_full_angle_y_mrad": null,
+    "fraunhofer_ideal_half_angle_x_mrad": null,
+    "fraunhofer_ideal_half_angle_y_mrad": null,
+    "fraunhofer_invalid_reason": null,
+    "fraunhofer_valid": false,
+    "invalid_reason": "wavelength_nm_not_provided",
+    "m2": 1.0,
+    "model": "paraxial_gaussian_from_fitted_waist",
+    "predicted_full_angle_x_mrad": null,
+    "predicted_full_angle_y_mrad": null,
+    "predicted_half_angle_x_mrad": null,
+    "predicted_half_angle_y_mrad": null,
+    "predicted_rayleigh_range_x_mm": null,
+    "predicted_rayleigh_range_y_mm": null,
+    "valid": false,
+    "waist_definition": "Gaussian 1/e^2 intensity diameter",
+    "waist_source_x": "main_zscan_fitted_waist",
+    "waist_source_y": "main_zscan_fitted_waist",
+    "wavelength_nm": null
+  },
+  "half_angle_x_mrad": 3.9977741355191765,
+  "half_angle_y_mrad": 5.00000947963006,
+  "judgement": "PASS",
+  "key_results": {
+    "minimum_area": {
+      "area_um2": 310.6724853094423,
+      "diameter_x_um": 17.99019207916337,
+      "diameter_y_um": 21.987563668943956,
+      "nearest_plane_index_count": 1,
+      "position_trusted_for_fit": true,
+      "source": "main_zscan_fit",
+      "valid": true,
+      "z_mm": 1.2480401498908015e-12
+    },
+    "x": {
+      "axis": "X",
+      "fit_r2": 0.9999999924598376,
+      "fit_reasons": null,
+      "fit_rmse_um": 5.780426471525714e-06,
+      "fit_status": null,
+      "fraunhofer_ideal_full_angle_mrad": null,
+      "fraunhofer_ideal_half_angle_mrad": null,
+      "image_plane_index_count": 1,
+      "measured_full_angle_mrad": 7.995548271038353,
+      "measured_half_angle_mrad": 3.9977741355191765,
+      "minimum_diameter_um": 17.99019207916337,
+      "minimum_source": "main_zscan_fitted_waist",
+      "minimum_z_mm": -5.338873824444854e-13,
+      "minimum_z_position_trusted_for_fit": true,
+      "residual_std_um": null,
+      "valid_points_count": null
+    },
+    "y": {
+      "axis": "Y",
+      "fit_r2": 0.999999746923173,
+      "fit_reasons": null,
+      "fit_rmse_um": 4.2850897666051604e-05,
+      "fit_status": null,
+      "fraunhofer_ideal_full_angle_mrad": null,
+      "fraunhofer_ideal_half_angle_mrad": null,
+      "image_plane_index_count": 1,
+      "measured_full_angle_mrad": 10.00001895926012,
+      "measured_half_angle_mrad": 5.00000947963006,
+      "minimum_diameter_um": 21.987563668943956,
+      "minimum_source": "main_zscan_fitted_waist",
+      "minimum_z_mm": 1.798686040127019e-12,
+      "minimum_z_position_trusted_for_fit": true,
+      "residual_std_um": null,
+      "valid_points_count": null
+    }
+  },
+  "measured_beam_quality": {
+    "definition": "pi*D0*Theta_full/(4*lambda)",
+    "invalid_reason": "measured_waist_or_divergence_not_available",
+    "m2_x": null,
+    "m2_y": null,
+    "valid": false,
+    "wavelength_nm": null
+  },
+  "measurement_status": "complete",
+  "minimum_area": {
+    "area_um2": 310.6724853094423,
+    "diameter_x_um": 17.99019207916337,
+    "diameter_y_um": 21.987563668943956,
+    "nearest_plane_index_count": 1,
+    "position_trusted_for_fit": true,
+    "source": "main_zscan_fit",
+    "valid": true,
+    "z_mm": 1.2480401498908015e-12
+  },
+  "morphology_summary": {
+    "centroid_x_mean_um": 26.33125,
+    "centroid_y_mean_um": 26.33125,
+    "d4sigma_major_max_um": 22.19127030856273,
+    "d4sigma_minor_min_um": 17.990201336719196,
+    "d4sigma_x_mean_um": 18.041092661071232,
+    "d4sigma_y_mean_um": 22.05280370876621,
+    "ellipticity_mean": 0.8180866202706089,
+    "invalid_points_count": 0,
+    "valid_points_count": 8
+  },
+  "output_files": {
+    "calibration_snapshot": "calibration_snapshot.yaml",
+    "recipe_snapshot": "recipe_snapshot.yaml",
+    "report_assets": [
+      "report_assets/beam_propagation.png",
+      "report_assets/divergence_fit.png",
+      "report_assets/spot_000.png",
+      "report_assets/spot_001.png",
+      "report_assets/spot_002.png",
+      "report_assets/spot_003.png",
+      "report_assets/spot_004.png",
+      "report_assets/spot_005.png",
+      "report_assets/spot_006.png",
+      "report_assets/spot_007.png"
+    ],
+    "report_html": "report.html",
+    "result_summary": "result_summary.json",
+    "result_summary_csv": "result_summary.csv",
+    "system_snapshot": "system_snapshot.yaml",
+    "z_scan_table": "z_scan_table.csv"
+  },
+  "predicted_full_angle_x_mrad": null,
+  "predicted_full_angle_y_mrad": null,
+  "predicted_half_angle_x_mrad": null,
+  "predicted_half_angle_y_mrad": null,
+  "recipe": {
+    "recipe_id": "recipe_40x_zscan_example"
+  },
+  "recipe_id": "recipe_40x_zscan_example",
+  "run_dir": "runs\\Run_20260920_223333_SIM-W001",
+  "run_id": "Run_20260920_223333_SIM-W001",
+  "sample_id": "SIM-W001",
+  "sample_info": {
+    "sample_id": "SIM-W001"
+  },
+  "scan_error": null,
+  "scan_status": "complete",
+  "system": {
+    "effective_pixel_x_um": 0.1375,
+    "effective_pixel_y_um": 0.1375,
+    "field_of_view_x_um": 52.800000000000004,
+    "field_of_view_y_um": 52.800000000000004,
+    "frame_mode": "simulated_cropped_frame",
+    "height_px": 384,
+    "mode": "simulated_mvp",
+    "profiler": "SimulatedProfiler",
+    "source_calibration_path": "configs\\calibration_40x.example.yaml",
+    "source_recipe_path": "configs\\recipe_40x_zscan.example.yaml",
+    "stage": "SimulatedStage",
+    "synthetic_truth": {
+      "full_angle_x_mrad": 8.0,
+      "full_angle_y_mrad": 10.0
+    },
+    "system_name": "laser-beam-qa",
+    "width_px": 384
+  },
+  "valid_points_count": 5,
+  "waist_diameter_x_um": 17.99019207916337,
+  "waist_diameter_y_um": 21.987563668943956,
+  "waist_refinement": {},
+  "waist_z_x_mm": -5.338873824444854e-13,
+  "waist_z_y_mm": 1.798686040127019e-12
+}

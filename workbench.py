@@ -112,9 +112,17 @@ def render_report(project, snapshots):
             method = json.dumps(adapted["method"], ensure_ascii=False, indent=2)
             results = json.dumps(adapted["results"], ensure_ascii=False, indent=2)
             provenance = adapted.get("source_input")
-            input_line = (f"<p>Raw input: {escape(provenance['file'])} "
-                          f"<span class='hash'>(SHA-256 {provenance['sha256']})</span></p>"
-                          if provenance else "<p>Raw input: not recorded in the export</p>")
+            if provenance is None:
+                input_line = "<p>Raw input: not recorded in the export</p>"
+            elif "files" in provenance:
+                input_line = (f"<p>Raw inputs: {escape(', '.join(provenance['files']))}</p>"
+                              if provenance["files"] else
+                              "<p>Raw input: not recorded in the export</p>")
+            elif "sha256" in provenance:
+                input_line = (f"<p>Raw input: {escape(provenance['file'])} "
+                              f"<span class='hash'>(SHA-256 {provenance['sha256']})</span></p>")
+            else:
+                input_line = f"<p>Raw input: {escape(provenance['file'])}</p>"
             warning_line = "".join(f"<li>{escape(w)}</li>" for w in adapted["warnings"])
             warning_block = (f"<h3>Source warnings</h3><ul>{warning_line}</ul>" if warning_line else "")
             source_id = adapted.get("source_sample_id")
