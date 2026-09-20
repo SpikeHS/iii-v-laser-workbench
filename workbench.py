@@ -7,6 +7,8 @@ import html
 import json
 from pathlib import Path
 
+from adapters import ADAPTERS
+
 
 def require(condition, message):
     if not condition:
@@ -31,6 +33,27 @@ def unique_records(records, label):
     return result
 
 
+def adapt_measurement(record, payload, key):
+    """Run the tool adapter for modalities that have one; pass others through.
+
+    Known-tool diagnostics are errors. Manifest conditions are merged on top:
+    a recorded source value wins, the manifest fills unknown (null) values,
+    and disagreeing values are errors.
+    """
+    conditions = dict(record.get("conditions") or {})
+    if record["modality"] in ADAPTERS:
+        adapted = ADAPTERS[record["modality"]](payload)
+        for name, value in adapted["conditions"].items():
+            manifest_value = conditions.get(name, ...)
+            if manifest_value is ... or manifest_value is None:
+                conditions[name] = value
+            elif value is not None and value != manifest_value:
+                raise ValueError(f"Conflicting {name} for {key}: manifest "
+                                 f"{manifest_value!r} vs source {value!r}")
+        record = {**record, "conditions": conditions, "adapted": adapted}
+    return record
+
+
 def load_project(path):
     path = Path(path).resolve()
     project = read_json(path)
@@ -51,6 +74,7 @@ def load_project(path):
             current = entities[current].get("parent_id")
     measurements = unique_records(project.get("measurements"), "measurement")
     snapshots = []
+    seen_sources = {}
     for key, record in measurements.items():
         entity_id = record.get("entity_id")
         require(isinstance(entity_id, str) and entity_id in entities, f"Unknown entity: {key}")
@@ -63,8 +87,13 @@ def load_project(path):
         source = (path.parent / relative).resolve()
         require(source.is_relative_to(path.parent), f"Source escapes project folder: {key}")
         require(source.is_file() and source.suffix.lower() == ".json", f"Missing JSON source: {key}")
+        digest = hashlib.sha256(source.read_bytes()).hexdigest()
+        previous = seen_sources.get(digest)
+        require(previous is None, f"Duplicate source file for {key} and {previous}")
+        seen_sources[digest] = key
         payload = read_json(source)
-        snapshots.append((record, payload, hashlib.sha256(source.read_bytes()).hexdigest()))
+        record = adapt_measurement(record, payload, key)
+        snapshots.append((record, payload, digest))
     return project, snapshots
 
 
@@ -77,12 +106,32 @@ def render_report(project, snapshots):
     cards = []
     for record, payload, digest in snapshots:
         conditions = json.dumps(record["conditions"], ensure_ascii=False, indent=2)
+        adapted = record.get("adapted")
+        summary = ""
+        if adapted:
+            method = json.dumps(adapted["method"], ensure_ascii=False, indent=2)
+            results = json.dumps(adapted["results"], ensure_ascii=False, indent=2)
+            provenance = adapted.get("source_input")
+            input_line = (f"<p>Raw input: {escape(provenance['file'])} "
+                          f"<span class='hash'>(SHA-256 {provenance['sha256']})</span></p>"
+                          if provenance else "<p>Raw input: not recorded in the export</p>")
+            warning_line = "".join(f"<li>{escape(w)}</li>" for w in adapted["warnings"])
+            warning_block = (f"<h3>Source warnings</h3><ul>{warning_line}</ul>" if warning_line else "")
+            source_id = adapted.get("source_sample_id")
+            source_id_line = (f"<p>Source sample_id: <b>{escape(source_id)}</b></p>"
+                              if source_id else "")
+            summary = (
+                f"{source_id_line}{input_line}"
+                f"<h3>Method</h3><pre>{escape(method)}</pre>"
+                f"<h3>Key results</h3><pre>{escape(results)}</pre>{warning_block}"
+            )
         cards.append(
             f"<section><h2>{escape(record['id'])} · {escape(record['modality'])}</h2>"
             f"<p>Entity: <b>{escape(record['entity_id'])}</b> · Data: <b>{escape(record['data_kind'])}</b></p>"
             f"<p>Source: {escape(record['source'])}</p><p class='hash'>Result-file SHA-256: {digest}</p>"
-            f"<h3>Declared conditions</h3><pre>{escape(conditions)}</pre>"
-            f"<details open><summary>Source result (original field meanings)</summary>"
+            f"<h3>Conditions</h3><pre>{escape(conditions)}</pre>"
+            f"{summary}"
+            f"<details><summary>Source result (original field meanings)</summary>"
             f"<pre>{escape(json.dumps(payload, ensure_ascii=False, indent=2))}</pre></details></section>"
         )
     title = escape(project["title"])
@@ -114,7 +163,9 @@ def main(argv=None):
                 handle.write(report)
             print(f"Created {args.out}")
         else:
-            print(f"OK: {len(project['entities'])} entities, {len(snapshots)} linked result files")
+            adapted = sum(1 for record, _, _ in snapshots if record.get("adapted"))
+            print(f"OK: {len(project['entities'])} entities, {len(snapshots)} linked result files, "
+                  f"{adapted} parsed by tool adapters")
     except (ValueError, OSError) as exc:
         parser.exit(2, f"error: {exc}\n")
 

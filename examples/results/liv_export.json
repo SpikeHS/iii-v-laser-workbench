@@ -1,0 +1,151 @@
+{
+  "schema_version": "0.1.0",
+  "method": "explicit-window-linear-extrapolation",
+  "measurement_mode": "CW",
+  "fit_range_mA": [
+    30.0,
+    80.0
+  ],
+  "fit_point_count": 11,
+  "baseline_mW": 0.0,
+  "threshold_estimate_mA": 20.000000000000018,
+  "slope_efficiency_mW_per_mA": 0.4000000000000001,
+  "fit_intercept_mW": -8.000000000000009,
+  "fit_r_squared": 1.0,
+  "max_power_mW": 32.0,
+  "max_wpe_percent": 21.333333333333332,
+  "warnings": [],
+  "points": [
+    {
+      "current_mA": 0.0,
+      "voltage_V": 1.2,
+      "power_mW": 0.0,
+      "wpe_percent": null
+    },
+    {
+      "current_mA": 5.0,
+      "voltage_V": 1.215,
+      "power_mW": 0.0,
+      "wpe_percent": 0.0
+    },
+    {
+      "current_mA": 10.0,
+      "voltage_V": 1.23,
+      "power_mW": 0.0,
+      "wpe_percent": 0.0
+    },
+    {
+      "current_mA": 15.0,
+      "voltage_V": 1.245,
+      "power_mW": 0.0,
+      "wpe_percent": 0.0
+    },
+    {
+      "current_mA": 20.0,
+      "voltage_V": 1.26,
+      "power_mW": 0.0,
+      "wpe_percent": 0.0
+    },
+    {
+      "current_mA": 25.0,
+      "voltage_V": 1.275,
+      "power_mW": 2.0,
+      "wpe_percent": 6.274509803921569
+    },
+    {
+      "current_mA": 30.0,
+      "voltage_V": 1.29,
+      "power_mW": 4.0,
+      "wpe_percent": 10.335917312661499
+    },
+    {
+      "current_mA": 35.0,
+      "voltage_V": 1.305,
+      "power_mW": 6.0,
+      "wpe_percent": 13.136288998357964
+    },
+    {
+      "current_mA": 40.0,
+      "voltage_V": 1.32,
+      "power_mW": 8.0,
+      "wpe_percent": 15.15151515151515
+    },
+    {
+      "current_mA": 45.0,
+      "voltage_V": 1.335,
+      "power_mW": 10.0,
+      "wpe_percent": 16.645859342488556
+    },
+    {
+      "current_mA": 50.0,
+      "voltage_V": 1.35,
+      "power_mW": 12.0,
+      "wpe_percent": 17.77777777777778
+    },
+    {
+      "current_mA": 55.0,
+      "voltage_V": 1.365,
+      "power_mW": 14.0,
+      "wpe_percent": 18.64801864801865
+    },
+    {
+      "current_mA": 60.0,
+      "voltage_V": 1.38,
+      "power_mW": 16.0,
+      "wpe_percent": 19.32367149758454
+    },
+    {
+      "current_mA": 65.0,
+      "voltage_V": 1.395,
+      "power_mW": 18.0,
+      "wpe_percent": 19.851116625310173
+    },
+    {
+      "current_mA": 70.0,
+      "voltage_V": 1.41,
+      "power_mW": 20.0,
+      "wpe_percent": 20.26342451874367
+    },
+    {
+      "current_mA": 75.0,
+      "voltage_V": 1.425,
+      "power_mW": 22.0,
+      "wpe_percent": 20.584795321637426
+    },
+    {
+      "current_mA": 80.0,
+      "voltage_V": 1.44,
+      "power_mW": 24.0,
+      "wpe_percent": 20.833333333333336
+    },
+    {
+      "current_mA": 85.0,
+      "voltage_V": 1.455,
+      "power_mW": 26.0,
+      "wpe_percent": 21.022842126541335
+    },
+    {
+      "current_mA": 90.0,
+      "voltage_V": 1.47,
+      "power_mW": 28.0,
+      "wpe_percent": 21.16402116402116
+    },
+    {
+      "current_mA": 95.0,
+      "voltage_V": 1.485,
+      "power_mW": 30.0,
+      "wpe_percent": 21.265284423179157
+    },
+    {
+      "current_mA": 100.0,
+      "voltage_V": 1.5,
+      "power_mW": 32.0,
+      "wpe_percent": 21.333333333333332
+    }
+  ],
+  "sample_id": "SIM-D001",
+  "temperature_C": null,
+  "source_file": "synthetic_liv.csv",
+  "source_sha256": "161b47d258fc72e9cfe7a141f7bfb7c5c6895c1ec85edb20c6803eb9ac5248bd",
+  "software_version": "0.1.0"
+}
